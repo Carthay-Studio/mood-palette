@@ -1,0 +1,7 @@
+{
+  "name": "Mood Palette",
+  "description": "Color inspiration powered by Gemini. Describe a mood, a scene, or a concept, and get a beautiful, matching color palette in return.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

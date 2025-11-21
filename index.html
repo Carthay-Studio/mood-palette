@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mood Palette</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400&family=JetBrains+Mono:wght@400&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Pirata+One&display=swap" rel="stylesheet">
+  <style>
+    body { background-color: #0C0C0C; color: #F4F4F4; margin: 0; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0C0C0C',
+            surface: '#151515',
+            'surface-alt': '#1C1C1C',
+            border: '#1C1C1C', // 2px Solid
+            'text-primary': '#F4F4F4',
+            'text-secondary': '#AFAFAF',
+            'text-muted': '#787878', // Contrast Floor
+            accent: '#E0E0E0',
+            'modal-bg': '#F4F4F4',
+            'modal-text': '#111111',
+            'modal-border': '#E5E5E5',
+            'status-success': '#499C54',
+            'status-warning': '#C79533',
+            'status-error': '#CF5858',
+          },
+          fontFamily: {
+            brand: ['"Pirata One"', 'serif'],
+            product: ['"Source Serif 4"', 'serif'],
+            ui: ['"DM Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          borderRadius: { DEFAULT: '0px' },
+          borderWidth: { DEFAULT: '2px' },
+          transitionDuration: {
+            '1000': '1000ms',
+          },
+          transitionTimingFunction: {
+            'carthay': 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+          },
+          animation: {
+            'fade-in': 'fadeIn 1.0s cubic-bezier(0.25, 0.1, 0.25, 1) forwards',
+            'fade-out': 'fadeOut 1.0s cubic-bezier(0.25, 0.1, 0.25, 1) forwards',
+            'fade-up': 'fadeUp 1.0s cubic-bezier(0.25, 0.1, 0.25, 1) forwards',
+            'slide-in-right': 'slideInRight 1.0s cubic-bezier(0.25, 0.1, 0.25, 1) forwards',
+            'slide-out-right': 'slideOutRight 1.0s cubic-bezier(0.25, 0.1, 0.25, 1) forwards',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'glow': 'glow 2s ease-in-out infinite alternate',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            fadeOut: {
+              '0%': { opacity: '1' },
+              '100%': { opacity: '0' },
+            },
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(8px)', filter: 'blur(5px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)', filter: 'blur(0)' },
+            },
+            slideInRight: {
+              '0%': { transform: 'translateX(100%)', filter: 'blur(10px)' },
+              '100%': { transform: 'translateX(0)', filter: 'blur(0)' },
+            },
+            slideOutRight: {
+              '0%': { transform: 'translateX(0)', filter: 'blur(0)' },
+              '100%': { transform: 'translateX(100%)', filter: 'blur(10px)' },
+            },
+            glow: {
+              '0%': { boxShadow: '0 0 20px -10px rgba(255, 255, 255, 0.1)' },
+              '100%': { boxShadow: '0 0 40px -5px rgba(255, 255, 255, 0.4)' },
+            }
+          }
+        },
+      },
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-bg text-text-primary selection:bg-accent selection:text-surface overflow-x-hidden antialiased">
+  <div id="root"></div>
+  <script type="module" src="./index.tsx" data-cfasync="false"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
