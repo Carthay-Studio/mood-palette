@@ -26,9 +26,47 @@ const jetbrainsMono = JetBrains_Mono({
 // For now using system fonts as fallback for UI text
 
 export const metadata: Metadata = {
-  title: "Mood Palette - Carthay Studio",
-  description: "AI-powered color palette generator",
+  title: "Mood Palette - AI-Powered Color Palette Generator | Carthay Studio",
+  description:
+    "Generate beautiful, harmonious color palettes from images using AI. Upload a photo, capture with your camera, or describe your vision to create stunning color schemes instantly.",
   generator: "v0.app",
+  keywords: [
+    "color palette",
+    "color generator",
+    "AI colors",
+    "palette from image",
+    "color scheme",
+    "design tools",
+    "Carthay Studio",
+  ],
+  authors: [{ name: "Carthay Studio" }],
+  creator: "Carthay Studio",
+  publisher: "Carthay Studio",
+  metadataBase: new URL("https://moodpalette.carthaystudio.com"),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://moodpalette.carthaystudio.com",
+    siteName: "Mood Palette",
+    title: "Mood Palette - AI-Powered Color Palette Generator",
+    description:
+      "Generate beautiful, harmonious color palettes from images using AI. Create stunning color schemes instantly.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Mood Palette - AI Color Palette Generator",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mood Palette - AI-Powered Color Palette Generator",
+    description: "Generate beautiful, harmonious color palettes from images using AI.",
+    images: ["/og-image.png"],
+    creator: "@carthaystudio",
+  },
   icons: {
     icon: [
       {

@@ -460,38 +460,46 @@ const App: React.FC = () => {
             </div>
           </div>
         )}
-      </div>
 
-      <div className="w-full max-w-6xl flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-[10px] text-text-muted uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity duration-300 animate-fade-in">
-        <div className="flex gap-4">
-          <span>Carthay Studio</span>
-          <span>Build {BUILD_NUMBER}</span>
-        </div>
-        <div className="flex gap-4">
-          <a
-            href="https://carthaystudio.com"
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-text-primary transition-colors"
-          >
-            Website
-          </a>
-          <a
-            href="https://x.com/carthaystudio"
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-text-primary transition-colors"
-          >
-            Twitter
-          </a>
-          <a
-            href="mailto:hello@carthaystudio.com"
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-text-primary transition-colors"
-          >
-            Contact
-          </a>
+        <div className="mt-12 pt-8 border-t-2 border-border flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-[10px] text-text-muted uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity duration-300">
+          <div className="flex gap-4">
+            <span>Carthay Studio</span>
+            <span>Build {BUILD_NUMBER}</span>
+          </div>
+          <div className="flex gap-4">
+            <a
+              href="https://carthaystudio.com"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-text-primary transition-colors"
+            >
+              Contact
+            </a>
+            <a
+              href="https://github.com/Carthay-Studio/mood-palette"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-text-primary transition-colors"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.instagram.com/carthay_studio/"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-text-primary transition-colors"
+            >
+              Instagram
+            </a>
+            <a
+              href="https://github.com/Carthay-Studio/mood-palette/blob/main/LICENSE"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-text-primary transition-colors"
+            >
+              License
+            </a>
+          </div>
         </div>
       </div>
 
