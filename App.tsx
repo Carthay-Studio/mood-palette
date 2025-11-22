@@ -250,11 +250,11 @@ const App: React.FC = () => {
   const paletteNameRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
-    if (paletteNameRef.current) {
+    if (paletteNameRef.current && palette) {
       paletteNameRef.current.style.height = "auto"
       paletteNameRef.current.style.height = paletteNameRef.current.scrollHeight + "px"
     }
-  }, [palette.name])
+  }, [palette])
 
   if (loading && !palette) {
     return (
