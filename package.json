@@ -1,8 +1,35 @@
 {
-  "name": "my-v0-project",
-  "version": "0.1.0",
+  "name": "mood-palette",
+  "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "echo 'no build script'"
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@vercel/analytics": "latest",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "colorthief": "latest",
+    "lucide-react": "^0.454.0",
+    "next": "16.0.3",
+    "pako": "latest",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7",
+    "tw-animate-css": "latest"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.9",
+    "@types/node": "^22",
+    "@types/pako": "^2.0.3",
+    "@types/react": "19.2.6",
+    "@types/react-dom": "19.2.3",
+    "postcss": "^8.5",
+    "tailwindcss": "^4.1.9",
+    "typescript": "^5"
   }
 }

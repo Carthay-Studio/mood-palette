@@ -1,0 +1,240 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Updated to exact Carthay Studio style guide specifications */
+:root {
+  /* Core Background Colors */
+  --bg: #0c0c0c;
+  --surface: #151515;
+  --surface-alt: #1c1c1c;
+  --border: #1c1c1c;
+
+  /* Text Colors */
+  --text-primary: #f4f4f4;
+  --text-secondary: #afafaf;
+  --text-muted: #787878;
+  --accent: #e0e0e0;
+
+  /* Added active button outline color */
+  --button-active: #787878;
+
+  /* Modal Colors */
+  --modal-bg: #f4f4f4;
+  --modal-text: #111111;
+  --modal-border: #e5e5e5;
+
+  /* Status Colors */
+  --status-success: #499c54;
+  --status-warning: #c79533;
+  --status-error: #cf5858;
+
+  /* Legacy compatibility */
+  --background: #0c0c0c;
+  --foreground: #f4f4f4;
+  --card: #0c0c0c;
+  --card-foreground: #f4f4f4;
+  --popover: #0c0c0c;
+  --popover-foreground: #f4f4f4;
+  --primary: #f4f4f4;
+  --primary-foreground: #0c0c0c;
+  --secondary: #1c1c1c;
+  --secondary-foreground: #f4f4f4;
+  --muted: #1c1c1c;
+  --muted-foreground: #787878;
+  --destructive: #cf5858;
+  --destructive-foreground: #f4f4f4;
+  --input: #1c1c1c;
+  --ring: #e0e0e0;
+  --radius: 0rem;
+  --sidebar: #0c0c0c;
+  --sidebar-foreground: #f4f4f4;
+  --sidebar-primary: #f4f4f4;
+  --sidebar-primary-foreground: #0c0c0c;
+  --sidebar-accent: #1c1c1c;
+  --sidebar-accent-foreground: #f4f4f4;
+  --sidebar-border: #1c1c1c;
+  --sidebar-ring: #e0e0e0;
+}
+
+@theme inline {
+  /* Typography system matching exact style guide */
+  --font-brand: "Pirata One", serif;
+  --font-product: "Source Serif 4", serif;
+  --font-editorial: "Source Serif 4", serif;
+  --font-ui: system-ui, -apple-system, sans-serif;
+  --font-action: "JetBrains Mono", monospace;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-section-header: "Source Serif 4", serif;
+
+  /* Updated font weights - Source Serif 4 changed to 300 from 400 */
+  --font-weight-brand: 400;
+  --font-weight-product: 300;
+  --font-weight-editorial: 300;
+  --font-weight-section-header: 300;
+  --font-weight-header: 200;
+  --font-weight-ui: 200;
+  --font-weight-action: 400;
+  --font-weight-mono: 400;
+
+  /* Color tokens */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-border: var(--border);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  /* Added button active color token */
+  --color-button-active: var(--button-active);
+  --color-modal-bg: var(--modal-bg);
+  --color-modal-text: var(--modal-text);
+  --color-modal-border: var(--modal-border);
+  --color-status-success: var(--status-success);
+  --color-status-warning: var(--status-warning);
+  --color-status-error: var(--status-error);
+
+  /* Legacy compatibility tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent-foreground: var(--primary-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-ui);
+    font-weight: var(--font-weight-ui);
+  }
+}
+
+/* Custom font utility classes with correct weights */
+.font-brand {
+  font-family: var(--font-brand);
+  font-weight: var(--font-weight-brand);
+}
+
+.font-product {
+  font-family: var(--font-product);
+  font-weight: var(--font-weight-product);
+}
+
+.font-editorial {
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-editorial);
+  font-style: italic;
+}
+
+.font-ui {
+  font-family: var(--font-ui);
+  font-weight: var(--font-weight-ui);
+}
+
+.font-action {
+  font-family: var(--font-action);
+  font-weight: var(--font-weight-action);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-mono);
+}
+
+.font-section-header {
+  font-family: var(--font-section-header);
+  font-weight: var(--font-weight-section-header);
+}
+
+/* Custom animations matching style guide motion system */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 30px -5px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 50px -5px rgba(255, 255, 255, 0.6);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1000ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.animate-fade-up {
+  animation: fade-up 1000ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 1500ms cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.ease-carthay {
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
