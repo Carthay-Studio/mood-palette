@@ -91,7 +91,7 @@ const ColorSwatch: React.FC<ColorSwatchProps> = ({ name, hex, colorMode, onEdit,
         {/* Header: Name */}
         <div className="flex items-center gap-2">
           <span
-            className="font-ui text-sm md:text-lg leading-tight tracking-wide truncate flex-1 drop-shadow-md"
+            className="font-ui text-sm md:text-lg leading-tight tracking-wide break-words flex-1 drop-shadow-md"
             title={name}
           >
             {name}

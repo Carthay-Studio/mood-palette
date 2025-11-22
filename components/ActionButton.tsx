@@ -59,7 +59,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({ icon, text, onClick, disabl
   // Strict Design Tokens
   // Using bg-bg (Void) to ensure border (surface-alt) is visible against the background.
   const className = `
-    relative flex items-center justify-center px-6 py-4
+    relative flex items-center justify-center px-6 py-4 min-h-[44px]
     font-mono text-[10px] uppercase tracking-widest
     bg-bg border-2 border-border text-text-muted
     hover:text-text-primary hover:border-accent hover:bg-surface

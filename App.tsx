@@ -256,7 +256,7 @@ const App: React.FC = () => {
             Mood Palette
           </h1>
           <div className="w-24 h-[2px] bg-surface-alt"></div>
-          <span className="font-mono text-xs uppercase tracking-[0.2em] text-text-primary animate-pulse-slow text-center">
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-center text-text-primary animate-pulse-slow">
             Loading Palette Engine
           </span>
         </div>
@@ -384,9 +384,19 @@ const App: React.FC = () => {
                     type="text"
                     value={palette.name}
                     onChange={(e) => updatePaletteName(e.target.value)}
-                    className="w-full text-3xl md:text-5xl font-product text-text-primary bg-transparent border-b-2 border-border focus:border-accent focus:outline-none transition-colors pb-2 pr-12 tracking-normal"
+                    className="w-full text-2xl md:text-5xl font-product text-text-primary bg-transparent border-b-2 border-border focus:border-accent focus:outline-none transition-colors pb-2 pr-16 tracking-normal break-words"
+                    style={{ fontSize: "16px" }}
                   />
-                  <Pencil className="absolute right-2 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted opacity-40 group-hover:opacity-70 transition-opacity pointer-events-none" />
+                  <button
+                    onClick={() => {
+                      const input = document.querySelector('input[type="text"]') as HTMLInputElement
+                      input?.focus()
+                    }}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center opacity-40 group-hover:opacity-70 hover:opacity-100 transition-opacity"
+                    aria-label="Edit palette name"
+                  >
+                    <Pencil className="w-5 h-5 text-text-muted" />
+                  </button>
                 </div>
               </div>
 
@@ -399,7 +409,7 @@ const App: React.FC = () => {
                     <button
                       key={mode}
                       onClick={() => setColorMode(mode)}
-                      className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors border-2 ${colorMode === mode ? "border-text-primary text-text-primary bg-surface" : "border-border text-text-muted hover:border-text-muted bg-bg"}`}
+                      className={`min-w-[60px] min-h-[44px] px-4 py-3 font-mono text-[10px] uppercase tracking-widest transition-colors border-2 ${colorMode === mode ? "border-text-primary text-text-primary bg-surface" : "border-border text-text-muted hover:border-text-muted bg-bg"}`}
                     >
                       {mode}
                     </button>
@@ -461,17 +471,80 @@ const App: React.FC = () => {
           </div>
         )}
 
+        <div className="hidden md:block">
+          <SavedPalettesDrawer
+            isOpen={isDrawerOpen}
+            onClose={() => setIsDrawerOpen(false)}
+            palettes={savedPalettes}
+            onLoad={handleLoadPalette}
+            onDelete={handleDeletePalette}
+            buildNumber={BUILD_NUMBER}
+          />
+        </div>
+
+        <div className="md:hidden">
+          {isDrawerOpen && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+              <div
+                className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-fade-in"
+                onClick={() => setIsDrawerOpen(false)}
+              />
+              <div className="relative w-full max-w-lg max-h-[90vh] bg-modal-bg border-2 border-modal-border animate-fade-up overflow-hidden flex flex-col">
+                <div className="flex justify-between items-center p-6 border-b-2 border-modal-border shrink-0">
+                  <h2 className="font-product text-3xl font-light text-modal-text">Archive</h2>
+                  <button onClick={() => setIsDrawerOpen(false)} className="p-2 hover:opacity-50 transition-opacity">
+                    <span className="font-mono text-2xl leading-none text-modal-text">×</span>
+                  </button>
+                </div>
+                <div className="flex-1 overflow-y-auto p-6 space-y-6">
+                  {savedPalettes.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center h-48 border-2 border-dashed border-modal-border opacity-50">
+                      <span className="font-mono text-xs uppercase tracking-widest text-center">
+                        Void
+                        <br />
+                        No Data
+                      </span>
+                    </div>
+                  ) : (
+                    savedPalettes.map((palette) => (
+                      <div key={palette.name} className="border-2 border-modal-border p-4 bg-white">
+                        <h3 className="font-product text-2xl font-light text-modal-text mb-4 break-words">
+                          {palette.name}
+                        </h3>
+                        <div className="flex h-10 w-full mb-4 border-2 border-modal-border">
+                          {palette.colors.map((c) => (
+                            <div key={c.hex} className="h-full flex-1" style={{ backgroundColor: c.hex }}></div>
+                          ))}
+                        </div>
+                        <button
+                          onClick={() => {
+                            handleLoadPalette(palette)
+                            setIsDrawerOpen(false)
+                          }}
+                          className="w-full py-3 font-mono text-[10px] uppercase tracking-widest border-2 border-modal-border text-modal-text hover:bg-modal-text hover:text-modal-bg transition-all"
+                        >
+                          Load Theme
+                        </button>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
         <div className="mt-8 pt-6 border-t-2 border-border flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-[10px] text-text-muted uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity duration-300">
           <div className="flex gap-4">
             <span>Carthay Studio</span>
             <span>Build {BUILD_NUMBER}</span>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-col md:flex-row gap-2 md:gap-4 w-full md:w-auto">
             <a
               href="https://carthaystudio.com"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-text-primary transition-colors"
+              className="md:hover:text-text-primary transition-colors text-center py-3 md:py-0 border-2 md:border-0 border-border md:border-transparent hover:border-text-muted"
             >
               Contact
             </a>
@@ -479,7 +552,7 @@ const App: React.FC = () => {
               href="https://github.com/Carthay-Studio/mood-palette"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-text-primary transition-colors"
+              className="md:hover:text-text-primary transition-colors text-center py-3 md:py-0 border-2 md:border-0 border-border md:border-transparent hover:border-text-muted"
             >
               GitHub
             </a>
@@ -487,7 +560,7 @@ const App: React.FC = () => {
               href="https://www.instagram.com/carthay_studio/"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-text-primary transition-colors"
+              className="md:hover:text-text-primary transition-colors text-center py-3 md:py-0 border-2 md:border-0 border-border md:border-transparent hover:border-text-muted"
             >
               Instagram
             </a>
@@ -495,22 +568,13 @@ const App: React.FC = () => {
               href="https://github.com/Carthay-Studio/mood-palette/blob/main/LICENSE"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-text-primary transition-colors"
+              className="md:hover:text-text-primary transition-colors text-center py-3 md:py-0 border-2 md:border-0 border-border md:border-transparent hover:border-text-muted"
             >
               License
             </a>
           </div>
         </div>
       </div>
-
-      <SavedPalettesDrawer
-        isOpen={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-        palettes={savedPalettes}
-        onLoad={handleLoadPalette}
-        onDelete={handleDeletePalette}
-        buildNumber={BUILD_NUMBER}
-      />
 
       <ColorEditModal
         open={editModalOpen}
