@@ -63,6 +63,7 @@
   --font-brand: "Pirata One", serif;
   --font-product: "Source Serif 4", serif;
   --font-editorial: "Source Serif 4", serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
   --font-ui: system-ui, -apple-system, sans-serif;
   --font-action: "JetBrains Mono", monospace;
   --font-mono: "JetBrains Mono", monospace;
@@ -72,6 +73,7 @@
   --font-weight-brand: 400;
   --font-weight-product: 300;
   --font-weight-editorial: 300;
+  --font-weight-sans: 200;
   --font-weight-section-header: 300;
   --font-weight-header: 200;
   --font-weight-ui: 200;
@@ -154,6 +156,11 @@
   font-family: var(--font-editorial);
   font-weight: var(--font-weight-editorial);
   font-style: italic;
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-sans);
 }
 
 .font-ui {

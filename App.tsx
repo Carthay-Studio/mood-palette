@@ -270,18 +270,11 @@ const App: React.FC = () => {
       className="min-h-screen w-full flex flex-col items-center justify-center p-4 md:p-16 pb-12 font-ui transition-all duration-1000 ease-carthay relative overflow-x-hidden"
     >
       <div className="w-full max-w-6xl bg-surface/90 backdrop-blur-sm border-2 border-border p-6 md:p-12 relative animate-fade-up mb-8 flex-1">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-6 border-b-2 border-border pb-8 gap-6 md:gap-0">
-          <div className="space-y-1 w-full min-w-0">
-            <span className="font-brand text-3xl text-white tracking-normal block">Carthay Studio</span>
-            <h1 className="text-4xl md:text-7xl font-product italic text-text-primary tracking-tight leading-none">
-              Mood Palette
-            </h1>
-          </div>
-          <div className="text-left md:text-right w-full md:w-auto min-w-[200px]">
-            <p className="text-lg text-text-muted whitespace-nowrap">
-              Powered by <span className="text-text-primary">Gemini</span>.
-            </p>
-          </div>
+        <div className="flex justify-between items-center mb-6 border-b-2 border-border pb-6">
+          <h1 className="text-3xl md:text-4xl font-product italic text-text-primary tracking-tight leading-none">
+            Mood Palette
+          </h1>
+          <span className="font-brand text-xl md:text-2xl text-white tracking-normal">Carthay Studio</span>
         </div>
 
         <div className="grid grid-cols-3 gap-4 mb-4">
@@ -384,8 +377,8 @@ const App: React.FC = () => {
                     type="text"
                     value={palette.name}
                     onChange={(e) => updatePaletteName(e.target.value)}
-                    className="w-full text-2xl md:text-5xl font-product text-text-primary bg-transparent border-b-2 border-border focus:border-accent focus:outline-none transition-colors pb-2 pr-16 tracking-normal break-words"
-                    style={{ fontSize: "16px" }}
+                    className="w-full text-3xl md:text-5xl font-sans text-text-primary bg-transparent border-b-2 border-border focus:border-accent focus:outline-none transition-colors pb-2 pr-16 tracking-normal break-words"
+                    style={{ fontSize: "clamp(24px, 5vw, 48px)" }}
                   />
                   <button
                     onClick={() => {
@@ -538,6 +531,7 @@ const App: React.FC = () => {
           <div className="flex gap-4">
             <span>Carthay Studio</span>
             <span>Build {BUILD_NUMBER}</span>
+            <span className="text-[9px]">Powered by Gemini</span>
           </div>
           <div className="flex flex-col md:flex-row gap-2 md:gap-4 w-full md:w-auto">
             <a

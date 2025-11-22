@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Pirata_One, Source_Serif_4, JetBrains_Mono } from "next/font/google"
+import { Pirata_One, Source_Serif_4, JetBrains_Mono, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
@@ -21,6 +21,12 @@ const jetbrainsMono = JetBrains_Mono({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-action",
+})
+
+const stackSans = Inter({
+  weight: ["200", "400"],
+  subsets: ["latin"],
+  variable: "--font-sans",
 })
 
 // For now using system fonts as fallback for UI text
@@ -92,7 +98,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${pirataOne.variable} ${sourceSerif.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      className={`${pirataOne.variable} ${sourceSerif.variable} ${jetbrainsMono.variable} ${stackSans.variable}`}
+    >
       <body className={`antialiased`}>
         {children}
         <Analytics />
