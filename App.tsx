@@ -247,6 +247,15 @@ const App: React.FC = () => {
     }
   }, [palette])
 
+  const paletteNameRef = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    if (paletteNameRef.current) {
+      paletteNameRef.current.style.height = "auto"
+      paletteNameRef.current.style.height = paletteNameRef.current.scrollHeight + "px"
+    }
+  }, [palette.name])
+
   if (loading && !palette) {
     return (
       <div className="min-h-screen w-full flex items-center justify-center bg-bg p-4 animate-fade-in">
@@ -374,6 +383,7 @@ const App: React.FC = () => {
                 </label>
                 <div className="relative group">
                   <textarea
+                    ref={paletteNameRef}
                     value={palette.name}
                     onChange={(e) => updatePaletteName(e.target.value)}
                     rows={1}
@@ -392,8 +402,7 @@ const App: React.FC = () => {
                   />
                   <button
                     onClick={() => {
-                      const input = document.querySelector("textarea") as HTMLTextAreaElement
-                      input?.focus()
+                      paletteNameRef.current?.focus()
                     }}
                     className="absolute right-0 top-2 w-12 h-12 flex items-center justify-center opacity-40 group-hover:opacity-70 hover:opacity-100 transition-opacity"
                     aria-label="Edit palette name"
