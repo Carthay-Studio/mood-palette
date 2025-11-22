@@ -373,19 +373,29 @@ const App: React.FC = () => {
                   Palette Identity
                 </label>
                 <div className="relative group">
-                  <input
-                    type="text"
+                  <textarea
                     value={palette.name}
                     onChange={(e) => updatePaletteName(e.target.value)}
-                    className="w-full text-3xl md:text-5xl font-sans text-text-primary bg-transparent border-b-2 border-border focus:border-accent focus:outline-none transition-colors pb-2 pr-16 tracking-normal break-words"
-                    style={{ fontSize: "clamp(24px, 5vw, 48px)" }}
+                    rows={1}
+                    className="w-full text-3xl md:text-5xl font-sans text-text-primary bg-transparent border-b-2 border-border focus:border-accent focus:outline-none transition-colors pb-2 pr-16 tracking-normal resize-none overflow-hidden"
+                    style={{
+                      fontSize: "clamp(24px, 5vw, 48px)",
+                      lineHeight: "1.2",
+                      wordWrap: "break-word",
+                      minHeight: "clamp(28px, 6vw, 58px)",
+                    }}
+                    onInput={(e) => {
+                      const target = e.target as HTMLTextAreaElement
+                      target.style.height = "auto"
+                      target.style.height = target.scrollHeight + "px"
+                    }}
                   />
                   <button
                     onClick={() => {
-                      const input = document.querySelector('input[type="text"]') as HTMLInputElement
+                      const input = document.querySelector("textarea") as HTMLTextAreaElement
                       input?.focus()
                     }}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center opacity-40 group-hover:opacity-70 hover:opacity-100 transition-opacity"
+                    className="absolute right-0 top-2 w-12 h-12 flex items-center justify-center opacity-40 group-hover:opacity-70 hover:opacity-100 transition-opacity"
                     aria-label="Edit palette name"
                   >
                     <Pencil className="w-5 h-5 text-text-muted" />
