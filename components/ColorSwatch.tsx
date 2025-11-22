@@ -29,6 +29,7 @@ const ColorSwatch: React.FC<ColorSwatchProps> = ({ name, hex, colorMode, onEdit,
   const [copied, setCopied] = useState(false)
   const [animationPhase, setAnimationPhase] = useState<"idle" | "fadeOut" | "fadeIn">("idle")
   const [displayedValue, setDisplayedValue] = useState("")
+  const [isActive, setIsActive] = useState(false)
 
   const calculatedValue = useMemo(() => {
     switch (colorMode) {
@@ -68,8 +69,15 @@ const ColorSwatch: React.FC<ColorSwatchProps> = ({ name, hex, colorMode, onEdit,
     setTimeout(() => setCopied(false), 2000)
   }
 
+  const handleSwatchTap = () => {
+    setIsActive(!isActive)
+  }
+
   return (
-    <div className="group relative aspect-[4/5] cursor-pointer border-2 border-border overflow-hidden transition-transform duration-500 ease-carthay">
+    <div
+      className={`group relative aspect-[4/5] cursor-pointer border-2 border-border overflow-hidden transition-transform duration-500 ease-carthay ${isActive ? "is-active" : ""}`}
+      onClick={handleSwatchTap}
+    >
       {/* Color Fill */}
       <div
         className="absolute inset-0 z-0 transition-all duration-700 group-hover:scale-110 ease-carthay"
@@ -107,8 +115,8 @@ const ColorSwatch: React.FC<ColorSwatchProps> = ({ name, hex, colorMode, onEdit,
         </div>
       </div>
 
-      {/* Action Buttons - Slide Up on Hover */}
-      <div className="absolute bottom-0 left-0 right-0 p-3 md:p-6 z-20 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-carthay">
+      {/* Action Buttons - Slide Up on Hover or Active State */}
+      <div className="absolute bottom-0 left-0 right-0 p-3 md:p-6 z-20 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 is-active:translate-y-0 is-active:opacity-100 transition-all duration-500 ease-carthay">
         <div className="flex flex-col gap-2">
           <button
             onClick={(e) => {
