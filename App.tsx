@@ -20,7 +20,7 @@ import { Pencil } from "lucide-react"
 import ColorThief from "colorthief"
 
 const LOCAL_STORAGE_KEY = "saved-color-palettes"
-const BUILD_NUMBER = new Date().toISOString().replace(/[-:.]/g, "").slice(0, 12)
+const BUILD_NUMBER = `v0.${new Date().toISOString().slice(0, 19).replace(/[-:T]/g, "")}`
 
 const defaultPalette: Palette = {
   name: "Synthetic Sustenance",
@@ -270,7 +270,7 @@ const App: React.FC = () => {
       className="min-h-screen w-full flex flex-col items-center justify-center p-4 md:p-16 pb-12 font-ui transition-all duration-1000 ease-carthay relative overflow-x-hidden"
     >
       <div className="w-full max-w-6xl bg-surface/90 backdrop-blur-sm border-2 border-border p-6 md:p-12 relative animate-fade-up mb-8 flex-1">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-10 border-b-2 border-border pb-8 gap-6 md:gap-0">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-6 border-b-2 border-border pb-8 gap-6 md:gap-0">
           <div className="space-y-1 w-full min-w-0">
             <span className="font-brand text-3xl text-white tracking-normal block">Carthay Studio</span>
             <h1 className="text-4xl md:text-7xl font-product italic text-text-primary tracking-tight leading-none">
@@ -284,7 +284,7 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-3 gap-4 mb-4">
           {(["prompt", "image", "camera"] as AppMode[]).map((mode) => (
             <button
               key={mode}
@@ -303,7 +303,7 @@ const App: React.FC = () => {
           ))}
         </div>
 
-        <div className="mb-8">
+        <div className="mb-4">
           {activeMode === "prompt" && (
             <textarea
               value={prompt}
@@ -338,7 +338,7 @@ const App: React.FC = () => {
           )}
         </div>
 
-        <div className="flex flex-col items-center mb-12">
+        <div className="flex flex-col items-center mb-8">
           <button
             onClick={handleGenerate}
             disabled={loading}
@@ -408,7 +408,7 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-2 border-border mb-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-2 border-border mb-8">
               {palette.colors.map((color, index) => (
                 <ColorSwatch
                   key={`${color.hex}-${index}`}
@@ -441,7 +441,7 @@ const App: React.FC = () => {
               ))}
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <ActionButton icon={<ShareIcon />} text="Share" onClick={handleShare} successMessage={shareMessage} />
               <ActionButton icon={<DownloadIcon />} text="ASE" onClick={handleDownloadAse} />
               <ActionButton
@@ -461,7 +461,7 @@ const App: React.FC = () => {
           </div>
         )}
 
-        <div className="mt-12 pt-8 border-t-2 border-border flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-[10px] text-text-muted uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity duration-300">
+        <div className="mt-8 pt-6 border-t-2 border-border flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-[10px] text-text-muted uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity duration-300">
           <div className="flex gap-4">
             <span>Carthay Studio</span>
             <span>Build {BUILD_NUMBER}</span>
