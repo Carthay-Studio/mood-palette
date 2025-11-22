@@ -19,16 +19,27 @@ const ColorEditModal: React.FC<ColorEditModalProps> = ({ open, onOpenChange, ini
   const [editHex, setEditHex] = useState(initialHex)
   const [copied, setCopied] = useState(false)
   const [colorMode] = useState<"HEX" | "RGB" | "HSL" | "CMYK">("HEX")
+  const [isClosing, setIsClosing] = useState(false)
+  const [shouldRender, setShouldRender] = useState(false)
 
   useEffect(() => {
     if (open) {
+      setShouldRender(true)
+      setIsClosing(false)
       setEditName(initialName)
       setEditHex(initialHex)
       setCopied(false)
+    } else if (shouldRender) {
+      setIsClosing(true)
+      const timer = setTimeout(() => {
+        setShouldRender(false)
+        setIsClosing(false)
+      }, 300) // Match animation duration
+      return () => clearTimeout(timer)
     }
-  }, [open, initialName, initialHex])
+  }, [open, initialName, initialHex, shouldRender])
 
-  if (!open) return null
+  if (!shouldRender) return null
 
   const handleCopy = () => {
     let valToCopy = editHex.toUpperCase()
@@ -47,7 +58,10 @@ const ColorEditModal: React.FC<ColorEditModalProps> = ({ open, onOpenChange, ini
   }
 
   const handleClose = () => {
-    onOpenChange(false)
+    setIsClosing(true)
+    setTimeout(() => {
+      onOpenChange(false)
+    }, 300)
   }
 
   const displayedValue = () => {
@@ -66,10 +80,19 @@ const ColorEditModal: React.FC<ColorEditModalProps> = ({ open, onOpenChange, ini
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-fade-in" onClick={handleClose} />
+      <div
+        className={`absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300 ${
+          isClosing ? "opacity-0" : "animate-fade-in"
+        }`}
+        onClick={handleClose}
+      />
 
       {/* Modal - Inverted Modality (Light Mode) */}
-      <div className="relative bg-modal-bg border-2 border-modal-border text-modal-text w-full max-w-md p-8 md:p-12 animate-fade-up shadow-2xl">
+      <div
+        className={`relative bg-modal-bg border-2 border-modal-border text-modal-text w-full max-w-md p-8 md:p-12 shadow-2xl transition-all duration-300 ${
+          isClosing ? "opacity-0 translate-y-4" : "animate-fade-up"
+        }`}
+      >
         {/* Header */}
         <div className="flex justify-between items-start mb-8">
           <div className="space-y-1">

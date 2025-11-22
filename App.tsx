@@ -20,7 +20,7 @@ import { Pencil } from "lucide-react"
 import ColorThief from "colorthief"
 
 const LOCAL_STORAGE_KEY = "saved-color-palettes"
-const buildNumber = new Date().toISOString().replace(/[-:.]/g, "").slice(0, 12)
+const BUILD_NUMBER = new Date().toISOString().replace(/[-:.]/g, "").slice(0, 12)
 
 const defaultPalette: Palette = {
   name: "Synthetic Sustenance",
@@ -465,7 +465,7 @@ const App: React.FC = () => {
       <div className="w-full max-w-6xl flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-[10px] text-text-muted uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity duration-300 animate-fade-in">
         <div className="flex gap-4">
           <span>Carthay Studio</span>
-          <span>Build {buildNumber}</span>
+          <span>Build {BUILD_NUMBER}</span>
         </div>
         <div className="flex gap-4">
           <a
@@ -496,11 +496,12 @@ const App: React.FC = () => {
       </div>
 
       <SavedPalettesDrawer
-        open={isDrawerOpen}
-        onOpenChange={setIsDrawerOpen}
+        isOpen={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
         palettes={savedPalettes}
-        onDeletePalette={handleDeletePalette}
-        onLoadPalette={handleLoadPalette}
+        onLoad={handleLoadPalette}
+        onDelete={handleDeletePalette}
+        buildNumber={BUILD_NUMBER}
       />
 
       <ColorEditModal

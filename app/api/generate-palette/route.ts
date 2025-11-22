@@ -2,14 +2,6 @@ import { type NextRequest, NextResponse } from "next/server"
 import { applyTypography } from "../../../services/textUtils"
 import type { Palette } from "../../../types"
 
-const API_KEY = process.env.GEMINI_API_KEY
-
-if (!API_KEY) {
-  console.error("[Mood Palette] GEMINI_API_KEY environment variable is not set")
-}
-
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${API_KEY}`
-
 const paletteSchema = {
   type: "OBJECT",
   properties: {
@@ -75,15 +67,23 @@ const namePaletteSchema = {
 
 export async function POST(request: NextRequest) {
   try {
-    const { type, prompt, colors } = await request.json()
+    const API_KEY = process.env.GEMINI_API_KEY
 
     if (!API_KEY) {
       console.error("[Mood Palette] API request attempted without GEMINI_API_KEY configured")
       return NextResponse.json(
-        { error: "API key not configured. Please add GEMINI_API_KEY to your environment variables." },
+        {
+          error: "GEMINI_API_KEY not found in this environment",
+          message:
+            "If you're seeing this in the v0 preview, please add GEMINI_API_KEY in the Vars section. Your production site at moodpalette.carthaystudio.com is correctly configured.",
+        },
         { status: 500 },
       )
     }
+
+    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${API_KEY}`
+
+    const { type, prompt, colors } = await request.json()
 
     let apiPrompt: string
     let schema: any
