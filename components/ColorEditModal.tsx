@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { CloseIcon, CopyIcon, CheckIcon } from './icons';
 import { hexToRgb, hexToHsl, hexToCmyk } from '../services/colorUtils';

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import type { Palette } from '../types';
 import { TrashIcon, ShareIcon, DownloadIcon } from './icons';

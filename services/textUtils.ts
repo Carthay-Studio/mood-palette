@@ -1,4 +1,3 @@
-
 export const applyTypography = (text: string): string => {
   if (!text) return text;
   

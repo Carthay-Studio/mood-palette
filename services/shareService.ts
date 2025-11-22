@@ -1,4 +1,3 @@
-
 import type { Palette } from '../types';
 
 export const encodePalette = (palette: Palette): string => {

@@ -1,4 +1,3 @@
-
 import React, { useRef, useState, DragEvent } from 'react';
 import { ImageIcon } from './icons';
 

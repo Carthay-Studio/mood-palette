@@ -1,4 +1,3 @@
-
 import type { Palette } from '../types';
 import { applyTypography } from './textUtils';
 

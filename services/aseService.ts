@@ -1,4 +1,3 @@
-
 import type { Palette } from '../types';
 
 function hexToRgbFloat(hex: string): [number, number, number] {

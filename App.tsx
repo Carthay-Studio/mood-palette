@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import type { Palette } from './types';
 import { generatePaletteFromPrompt, namePaletteFromColors } from './services/geminiService';
