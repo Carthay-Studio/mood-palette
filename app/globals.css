@@ -292,11 +292,4 @@
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-/* Added support for is-active variant to show buttons on mobile tap */
-.is-active\:translate-y-0.is-active {
-  transform: translateY(0);
-}
-
-.is-active\:opacity-100.is-active {
-  opacity: 1;
-}
+/* Removed is-active variant styles - using data attributes with Tailwind's group-data instead */

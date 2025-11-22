@@ -75,8 +75,9 @@ const ColorSwatch: React.FC<ColorSwatchProps> = ({ name, hex, colorMode, onEdit,
 
   return (
     <div
-      className={`group relative aspect-[4/5] cursor-pointer border-2 border-border overflow-hidden transition-transform duration-500 ease-carthay ${isActive ? "is-active" : ""}`}
+      className={`group relative aspect-[4/5] cursor-pointer border-2 border-border overflow-hidden transition-transform duration-500 ease-carthay`}
       onClick={handleSwatchTap}
+      data-active={isActive}
     >
       {/* Color Fill */}
       <div
@@ -116,14 +117,14 @@ const ColorSwatch: React.FC<ColorSwatchProps> = ({ name, hex, colorMode, onEdit,
       </div>
 
       {/* Action Buttons - Slide Up on Hover or Active State */}
-      <div className="absolute bottom-0 left-0 right-0 p-3 md:p-6 z-20 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 is-active:translate-y-0 is-active:opacity-100 transition-all duration-500 ease-carthay">
+      <div className="absolute bottom-0 left-0 right-0 p-3 md:p-6 z-20 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 group-data-[active=true]:translate-y-0 group-data-[active=true]:opacity-100 transition-all duration-500 ease-carthay pointer-events-auto">
         <div className="flex flex-col gap-2">
           <button
             onClick={(e) => {
               e.stopPropagation()
               handleCopy()
             }}
-            className="w-full py-2 md:py-3 bg-bg border-2 border-border text-text-primary font-mono text-[9px] md:text-[10px] uppercase tracking-widest hover:bg-surface hover:border-accent transition-all duration-300 shadow-2xl relative overflow-hidden flex items-center justify-center"
+            className="w-full py-2 md:py-3 bg-bg border-2 border-border text-text-primary font-mono text-[9px] md:text-[10px] uppercase tracking-widest hover:bg-surface hover:border-accent transition-all duration-300 shadow-2xl relative overflow-hidden flex items-center justify-center min-h-[44px]"
           >
             <div className="w-3 h-3 relative flex items-center justify-center flex-shrink-0">
               <Copy
@@ -151,7 +152,7 @@ const ColorSwatch: React.FC<ColorSwatchProps> = ({ name, hex, colorMode, onEdit,
               e.stopPropagation()
               onEdit()
             }}
-            className="w-full py-2 md:py-3 bg-bg border-2 border-border text-text-primary font-mono text-[9px] md:text-[10px] uppercase tracking-widest hover:bg-surface hover:border-accent transition-all duration-300 shadow-2xl flex items-center justify-center gap-2"
+            className="w-full py-2 md:py-3 bg-bg border-2 border-border text-text-primary font-mono text-[9px] md:text-[10px] uppercase tracking-widest hover:bg-surface hover:border-accent transition-all duration-300 shadow-2xl flex items-center justify-center gap-2 min-h-[44px]"
           >
             Edit Swatch
           </button>
